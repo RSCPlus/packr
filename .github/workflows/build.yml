@@ -16,12 +16,15 @@ jobs:
         cmake --build build --config Release
         cmake -A Win32 -G "Visual Studio 17 2022" -B build32 .
         cmake --build build32 --config Release
+        cmake -A ARM64 -G "Visual Studio 17 2022" -B build-arm64 .
+        cmake --build build-arm64 --config Release
     - uses: actions/upload-artifact@v3
       with:
         name: windows
         path: |
           src\main\native\packr\build\src\Release\packr.exe
           src\main\native\packr\build32\src\Release\packr.exe
+          src\main\native\packr\build-arm64\src\Release\packr.exe
         if-no-files-found: error
   macos:
     runs-on: macos-11
@@ -54,6 +57,7 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         path: artifacts
+    - run: sudo apt update
     - run: sudo apt install -y gcc-9-aarch64-linux-gnu g++-9-aarch64-linux-gnu
     - name: build natives
       run: |
@@ -68,6 +72,7 @@ jobs:
         set -e
         cp artifacts/windows/build/src/Release/packr.exe src/main/resources/packr-windows-x64.exe
         cp artifacts/windows/build32/src/Release/packr.exe src/main/resources/packr-windows.exe
+        cp artifacts/windows/build-arm64/src/Release/packr.exe src/main/resources/packr-windows-arm64.exe
         cp artifacts/macos/build/src/packr src/main/resources/packr-mac-x64
         cp artifacts/macos/build-arm64/src/packr src/main/resources/packr-mac-arm64
         cp src/main/native/packr/build/src/packr src/main/resources/packr-linux-x64

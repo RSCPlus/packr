@@ -3,6 +3,8 @@
 .project
 .classpath
 .settings
+src/main/native/packr/build*
+src/main/resources/packr*
 native/build
 native/obj
 native/packr.xcodeproj/

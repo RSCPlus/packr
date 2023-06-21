@@ -206,6 +206,7 @@ class PackrReduce {
 		switch (config.platform) {
 			case Windows32:
 			case Windows64:
+			case WindowsAarch64:
 				extensions.add(".dylib");
 				extensions.add(".dylib.git");
 				extensions.add(".dylib.sha1");

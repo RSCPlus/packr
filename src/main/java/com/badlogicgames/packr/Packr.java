@@ -140,6 +140,10 @@ public class Packr {
 				exe = readResource("/packr-windows-x64.exe");
 				extension = ".exe";
 				break;
+			case WindowsAarch64:
+				exe = readResource("/packr-windows-arm64.exe");
+				extension = ".exe";
+				break;
 			case Linux64:
 				exe = readResource("/packr-linux-x64");
 				break;
